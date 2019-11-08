@@ -1,6 +1,6 @@
 const express = require('express');
 
-const projects = require('./projectsHelpers');
+const projects = require('./projectsHelpers.js');
 
 const router = express.Router();
 
