@@ -14,5 +14,32 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/:id', (req, res) => {
+    const {id} = req.params;
+    
+    resources.getResourceById(id)
+    .then(resource => {
+        if (resource) {
+            res.json(resource);
+        } else {
+            res.status(404).json({ message: 'Could not find resource with given id.' })
+        }
+    })
+    .catch(err => {
+        res.status(500).json({ message: `Failed to retrieve the resource.`})
+    })
+})
+
+router.post('/', (req, res) => {
+    const resourceData = req.body;
+  
+    resources.addResource(resourceData)
+    .then(resource => {
+      res.status(201).json(resource);
+    })
+    .catch (err => {
+      res.status(500).json({ message: 'Failed to create new resource' });
+    });
+  });
 
 module.exports = router;
