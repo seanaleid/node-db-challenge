@@ -52,10 +52,10 @@ Take the steps necessary to complete the project from scratch. Start by initiali
 
 Complete the following tasks:
 
-- [ ] Design the data model and use _knex migrations_ to create the database and tables.
+- [X] Design the data model and use _knex migrations_ to create the database and tables.
 - [ ] Build an API with endpoints for:
-  - [ ] adding resources.
-  - [ ] retrieving a list of resources.
+  - [X] adding resources.
+  - [X] retrieving a list of resources.
   - [ ] adding projects.
   - [ ] retrieving a list of projects.
   - [ ] adding tasks.
@@ -105,9 +105,9 @@ A `project` is what needs to be done. We want to store the following data about 
 
 A `resource` is anything needed to complete a project, some examples are: a person, a tool, a meeting room or a software license. We want to store the following data about a `resource`:
 
-- [ ] a unique Id.
-- [ ] a name. This column is required.
-- [ ] a description.
+- [X] a unique Id.
+- [X] a name. This column is required.
+- [X] a description.
 
 The database should not allow resources with duplicate names.
 
