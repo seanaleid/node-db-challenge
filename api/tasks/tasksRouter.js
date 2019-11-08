@@ -7,7 +7,10 @@ const router = express.Router();
 router.get('/', (req, res) => {
     tasks.getTasks()
     .then(taskList => {
-        res.json(taskList);
+        let changeValue = taskList.map(task => {
+            return{...task, isCompleted: task.isCompleted === 0 ? false : true}
+        })
+        res.json(changeValue);
     })
     .catch(err => {
         res.status(500).json({ message: `Failed to retrieve the list of tasks.`})
@@ -18,13 +21,10 @@ router.get('/:id', (req, res) => {
     const {id} = req.params;
     
     tasks.getTaskById(id)
-    .then(task => {
-        if (task) {
-            res.json(task);
-        } else {
-            res.status(404).json({ message: 'Could not find task with given id.' })
-        }
-    })
+    .then(task => res.json({
+       ...task,
+       isCompleted: task.isCompleted === 0 ? false : true
+    }))
     .catch(err => {
         res.status(500).json({ message: `Failed to retrieve the task.`})
     })
@@ -32,14 +32,14 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const taskData = req.body;
-  
+
     tasks.addTask(taskData)
     .then(task => {
-      res.status(201).json(task);
+        res.status(201).json(task);
     })
     .catch (err => {
-      res.status(500).json({ message: 'Failed to create new task' });
+        res.status(500).json({ message: 'Failed to create new task' });
     });
-  });
+});
 
 module.exports = router;

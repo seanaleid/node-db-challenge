@@ -32,14 +32,14 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const resourceData = req.body;
-  
+
     resources.addResource(resourceData)
     .then(resource => {
-      res.status(201).json(resource);
+        res.status(201).json(resource);
     })
     .catch (err => {
-      res.status(500).json({ message: 'Failed to create new resource' });
+        res.status(500).json({ message: 'Failed to create new resource' });
     });
-  });
+});
 
 module.exports = router;
